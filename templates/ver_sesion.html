@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sesión</title>
+</head>
+<body>
+    <h1>Sesión del {{ sesion["fecha"] }}</h1>
+    <p>{{ sesion["notas"] }}</p>
+
+    <h2>Ejercicios</h2>
+    <table border="1">
+        <tr>
+            <th>Ejercicio</th>
+            <th>Series</th>
+            <th>Reps</th>
+            <th>Peso (kg)</th>
+        </tr>
+        {% for e in ejercicios %}
+        <tr>
+            <td>{{ e["nombre"] }}</td>
+            <td>{{ e["series"] }}</td>
+            <td>{{ e["repeticiones"] }}</td>
+            <td>{{ e["peso"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Agregar ejercicio</h2>
+    <form method="POST" action="/sesion/{{ sesion['id'] }}/agregar-ejercicio">
+        <input type="text" name="nombre" placeholder="Ejercicio" required>
+        <input type="number" name="series" placeholder="Series" required>
+        <input type="number" name="repeticiones" placeholder="Reps" required>
+        <input type="number" step="0.5" name="peso" placeholder="Peso kg" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <a href="/">← Volver</a>
+</body>
+</html>

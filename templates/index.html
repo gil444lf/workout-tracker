@@ -5,7 +5,20 @@
     <title>Workout Tracker</title>
 </head>
 <body>
-     <h1>WORKOUT TRACKER 💪</h1>
-     <p>Bienvenido a tu app de entrenamientos.</p>
+    <h1>Workout Tracker 💪</h1>
+    <a href="/nueva-sesion">+ Nueva Sesión</a>
+
+    <h2>Sesiones</h2>
+    {% if sesiones %}
+    <ul>
+        {% for s in sesiones %}
+        <li>
+            <a href="/sesion/{{ s['id'] }}">{{ s['fecha'] }} — {{ s['notas'] }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No hay sesiones aún. ¡Crea la primera!</p>
+    {% endif %}
 </body>
 </html>
